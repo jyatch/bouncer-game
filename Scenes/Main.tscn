@@ -1,12 +1,13 @@
 [gd_scene format=3 uid="uid://co7sa2h6u5raj"]
 
 [ext_resource type="Script" uid="uid://0kick23rfihm" path="res://Scripts/main.gd" id="1_kln2b"]
-[ext_resource type="PackedScene" uid="uid://cpyxh3r4e84fb" path="res://Scenes/paper.tscn" id="1_r150o"]
+[ext_resource type="PackedScene" path="res://Scenes/paper.tscn" id="1_r150o"]
 [ext_resource type="Texture2D" uid="uid://ewsjptiyfmt2" path="res://Images/aakash-sprite.png" id="2_idj7w"]
 [ext_resource type="Texture2D" uid="uid://0tqkfijumvvw" path="res://Images/jake-sprite.png" id="4_rgh2o"]
 [ext_resource type="Texture2D" uid="uid://bmtbstib5d5os" path="res://Images/text-bubble-pixilart.png" id="5_v1gob"]
 [ext_resource type="FontFile" uid="uid://blxtr3o4uc1kv" path="res://fonts/PixeloidSans-lxa3y.ttf" id="6_jw32o"]
 [ext_resource type="Texture2D" uid="uid://bhpjxysf2fg3t" path="res://Images/FreeHorrorUi.png" id="7_jw32o"]
+[ext_resource type="FontFile" uid="uid://bl4kr2y42iggr" path="res://fonts/PixeloidMono-nAOpP.ttf" id="8_50glp"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_kln2b"]
 atlas = ExtResource("2_idj7w")
@@ -156,3 +157,14 @@ scale = Vector2(2.4408634, 2.7314816)
 texture = ExtResource("7_jw32o")
 region_enabled = true
 region_rect = Rect2(129.5, 97.75, 28.5, 27.5)
+
+[node name="RoundTimer" type="Timer" parent="." unique_id=2012050620]
+autostart = true
+
+[node name="TimerLabel" type="Label" parent="." unique_id=1499203620]
+offset_right = 43.0
+offset_bottom = 83.0
+theme_override_fonts/font = ExtResource("8_50glp")
+theme_override_font_sizes/font_size = 32
+text = "15
+"

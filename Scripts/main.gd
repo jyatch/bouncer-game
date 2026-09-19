@@ -1,14 +1,23 @@
 extends Node2D
 
+@onready var round_timer = $RoundTimer
+@onready var timer_label = $TimerLabel
 
-# Called when the node enters the scene tree for the first time.
+var time_left: int = 15
+
+
 func _ready() -> void:
 	$Bouncer.play("Jake")
 	$SpeechBubble.hide()
-	
-	pass # Replace with function body.
+
+	timer_label.text = str(time_left)
+	round_timer.timeout.connect(_on_round_timer_timeout)
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
+func _on_round_timer_timeout() -> void:
+	time_left -= 1
+	timer_label.text = str(time_left)
+
+	if time_left <= 0:
+		round_timer.stop()
+		timer_label.text = "0"
