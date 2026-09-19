@@ -18,6 +18,7 @@ config/icon="res://Images/icon.svg"
 [autoload]
 
 Transition="*uid://dvg27le0avki4"
+PlayerData="*uid://bsovxllbeqi8y"
 
 [display]
 

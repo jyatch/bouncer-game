@@ -13,8 +13,3 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("1_r150o")
-
-[node name="HowToPlayButton" type="Button" parent="UI" unique_id=1868588614]
-offset_right = 57.0
-offset_bottom = 58.0
-text = "!"
