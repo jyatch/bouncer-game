@@ -1,7 +1,5 @@
 extends Control
 
-
-@export var game_scene: PackedScene
 @export var start_button: Button
 @export var name_input: LineEdit
 
@@ -13,4 +11,4 @@ func _on_start_button_pressed() -> void:
 	
 	PlayerData.player_name = player_name
 	
-	get_tree().change_scene_to_packed(game_scene)
+	Transition.change_scene("res://Scenes/Main.tscn")

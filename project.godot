@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Bouncer Game"
-run/main_scene="uid://cv57x3d3oorfs"
+run/main_scene="uid://b0e1fynjdl35t"
 config/features=PackedStringArray("4.7", "Forward Plus")
 config/icon="res://Images/icon.svg"
 
@@ -20,6 +20,7 @@ config/icon="res://Images/icon.svg"
 Transition="*res://Scripts/transition.gd"
 DoodleAI="*res://Scripts/doodle_ai.gd"
 QuickDraw="*res://Scripts/quickdraw.gd"
+PlayerData="*uid://bsovxllbeqi8y"
 
 [display]
 
