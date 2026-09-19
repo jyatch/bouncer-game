@@ -1,8 +1,54 @@
 [gd_scene format=3 uid="uid://co7sa2h6u5raj"]
 
+[ext_resource type="Script" uid="uid://0kick23rfihm" path="res://Scenes/main.gd" id="1_kln2b"]
 [ext_resource type="PackedScene" uid="uid://cpyxh3r4e84fb" path="res://Scenes/paper.tscn" id="1_r150o"]
+[ext_resource type="Texture2D" uid="uid://ewsjptiyfmt2" path="res://Images/aakash-sprite.png" id="2_idj7w"]
 
-[node name="Node2D" type="Node2D" unique_id=1064176562]
+[sub_resource type="AtlasTexture" id="AtlasTexture_kln2b"]
+atlas = ExtResource("2_idj7w")
+region = Rect2(0, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rgh2o"]
+atlas = ExtResource("2_idj7w")
+region = Rect2(100, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pbw6q"]
+atlas = ExtResource("2_idj7w")
+region = Rect2(200, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v1gob"]
+atlas = ExtResource("2_idj7w")
+region = Rect2(300, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jw32o"]
+atlas = ExtResource("2_idj7w")
+region = Rect2(400, 0, 100, 100)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_yd04n"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kln2b")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rgh2o")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pbw6q")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v1gob")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jw32o")
+}],
+"loop": 1,
+"name": &"Aakash",
+"speed": 5.0
+}]
+
+[node name="Main" type="Node2D" unique_id=1064176562]
+script = ExtResource("1_kln2b")
 
 [node name="Panel" type="Panel" parent="." unique_id=1806718338]
 offset_left = 313.0
@@ -33,3 +79,10 @@ offset_right = 259.0
 offset_bottom = 347.0
 bounce_box = NodePath("../TransBox")
 bouncing = true
+
+[node name="Bouncer" type="AnimatedSprite2D" parent="." unique_id=348846333]
+position = Vector2(157, 489)
+scale = Vector2(3.1, 3.24)
+sprite_frames = SubResource("SpriteFrames_yd04n")
+animation = &"Aakash"
+frame_progress = 0.3651957
