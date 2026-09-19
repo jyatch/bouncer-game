@@ -1,7 +1,6 @@
 [gd_scene format=3 uid="uid://c7iau3nky63kh"]
 
-[ext_resource type="Script" uid="uid://dtpdxblatirtv" path="res://scripts/how_to_play.gd" id="1_wbcyv"]
-[ext_resource type="PackedScene" uid="uid://co7sa2h6u5raj" path="res://Scenes/Main.tscn" id="2_0mtfm"]
+[ext_resource type="Script" uid="uid://cuhly4c4a4lm7" path="res://scripts/how_to_play.gd" id="1_wbcyv"]
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_yi6e2"]
 
@@ -13,7 +12,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_wbcyv")
-game_scene = ExtResource("2_0mtfm")
 start_button = NodePath("StartButton")
 name_input = NodePath("TextureRect/NameInput")
 
