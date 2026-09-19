@@ -3,11 +3,11 @@
 [ext_resource type="Script" uid="uid://ci3yjtaxocx5" path="res://Scripts/paper.gd" id="1_paper"]
 
 [node name="Paper" type="Control" unique_id=1713623816]
-custom_minimum_size = Vector2(420, 420)
+custom_minimum_size = Vector2(250, 350)
 layout_mode = 3
 anchors_preset = 0
-offset_right = 420.0
-offset_bottom = 420.0
+offset_right = 250.0
+offset_bottom = 350.0
 script = ExtResource("1_paper")
 
 [node name="View" type="SubViewportContainer" parent="." unique_id=1832745509]
@@ -22,7 +22,7 @@ stretch = true
 
 [node name="SubViewport" type="SubViewport" parent="View" unique_id=1909091309]
 handle_input_locally = false
-size = Vector2i(420, 420)
+size = Vector2i(250, 350)
 render_target_update_mode = 4
 
 [node name="BG" type="ColorRect" parent="View/SubViewport" unique_id=1355324671]
