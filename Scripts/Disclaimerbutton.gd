@@ -1,4 +1,4 @@
 extends Button
 
 func _on_play_pressed() -> void:
-	Transition.change_scene("res://Scenes/Main.tscn")
+	Transition.change_scene("res://Scenes/HowToPlay.tscn")
