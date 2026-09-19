@@ -29,10 +29,11 @@ expand_mode = 1
 script = ExtResource("2_s2c3o")
 
 [node name="Button" type="Button" parent="." unique_id=1118021962]
-offset_left = 433.0
-offset_top = 450.0
-offset_right = 696.0
-offset_bottom = 547.0
+texture_filter = 1
+offset_left = 430.0
+offset_top = 459.0
+offset_right = 691.0
+offset_bottom = 557.0
 theme = SubResource("Theme_beu5a")
 theme_type_variation = &"FlatButton"
 text = "PLAY"
