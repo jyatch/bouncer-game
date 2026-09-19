@@ -1,0 +1,26 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" uid="uid://ci3yjtaxocx5" path="res://Scripts/paper.gd" id="1_paper"]
+
+[node name="Paper" type="SubViewportContainer"]
+custom_minimum_size = Vector2(420, 420)
+offset_right = 420.0
+offset_bottom = 420.0
+mouse_filter = 2
+script = ExtResource("1_paper")
+
+[node name="SubViewport" type="SubViewport" parent="."]
+handle_input_locally = false
+size = Vector2i(420, 420)
+render_target_update_mode = 4
+
+[node name="BG" type="ColorRect" parent="SubViewport"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.968627, 0.952941, 0.901961, 1)
+
+[node name="Sheet" type="Node2D" parent="SubViewport"]
