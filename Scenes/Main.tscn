@@ -1,11 +1,12 @@
-[gd_scene format=3 uid="uid://sebrajoc756"]
+[gd_scene format=3 uid="uid://co7sa2h6u5raj"]
 
-[ext_resource type="Script" uid="uid://0kick23rfihm" path="res://Scenes/main.gd" id="1_kln2b"]
+[ext_resource type="Script" uid="uid://0kick23rfihm" path="res://Scripts/main.gd" id="1_kln2b"]
 [ext_resource type="PackedScene" uid="uid://cpyxh3r4e84fb" path="res://Scenes/paper.tscn" id="1_r150o"]
 [ext_resource type="Texture2D" uid="uid://ewsjptiyfmt2" path="res://Images/aakash-sprite.png" id="2_idj7w"]
 [ext_resource type="Texture2D" uid="uid://0tqkfijumvvw" path="res://Images/jake-sprite.png" id="4_rgh2o"]
 [ext_resource type="Texture2D" uid="uid://bmtbstib5d5os" path="res://Images/text-bubble-pixilart.png" id="5_v1gob"]
 [ext_resource type="FontFile" uid="uid://blxtr3o4uc1kv" path="res://fonts/PixeloidSans-lxa3y.ttf" id="6_jw32o"]
+[ext_resource type="Texture2D" uid="uid://bhpjxysf2fg3t" path="res://Images/FreeHorrorUi.png" id="7_jw32o"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_kln2b"]
 atlas = ExtResource("2_idj7w")
@@ -94,9 +95,9 @@ offset_bottom = 493.0
 
 [node name="TransBox" type="ColorRect" parent="Panel" unique_id=1787008851]
 layout_mode = 0
-offset_left = 9.0
+offset_left = -41.0
 offset_top = -3.0
-offset_right = 831.0
+offset_right = 781.0
 offset_bottom = 493.0
 color = Color(0.6480781, 0.64807814, 0.6480781, 0.10980392)
 
@@ -134,3 +135,24 @@ theme_override_colors/font_color = Color(0.00069389754, 0.00069389766, 0.0006938
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("6_jw32o")
 text = "blah blah blah"
+
+[node name="heart1" type="Sprite2D" parent="." unique_id=1843174411]
+position = Vector2(1106.172, 49.875)
+scale = Vector2(2.4408634, 2.7314816)
+texture = ExtResource("7_jw32o")
+region_enabled = true
+region_rect = Rect2(129.5, 97.75, 28.5, 27.5)
+
+[node name="heart2" type="Sprite2D" parent="." unique_id=553536392]
+position = Vector2(1054.1721, 49.875)
+scale = Vector2(2.4408634, 2.7314816)
+texture = ExtResource("7_jw32o")
+region_enabled = true
+region_rect = Rect2(129.5, 97.75, 28.5, 27.5)
+
+[node name="heart3" type="Sprite2D" parent="." unique_id=1590308282]
+position = Vector2(1003.1721, 49.875)
+scale = Vector2(2.4408634, 2.7314816)
+texture = ExtResource("7_jw32o")
+region_enabled = true
+region_rect = Rect2(129.5, 97.75, 28.5, 27.5)
