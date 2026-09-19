@@ -1,9 +1,9 @@
-[gd_scene format=3]
+[gd_scene format=3 uid="uid://cv57x3d3oorfs"]
 
 [ext_resource type="Script" uid="uid://t5yvuplu0fsr" path="res://Scripts/paper_test.gd" id="1_test"]
 [ext_resource type="PackedScene" path="res://Scenes/paper.tscn" id="2_paper"]
 
-[node name="PaperTest" type="Control"]
+[node name="PaperTest" type="Control" unique_id=2046453633]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -12,7 +12,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_test")
 
-[node name="BG" type="ColorRect" parent="."]
+[node name="BG" type="ColorRect" parent="." unique_id=1430097133]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -22,15 +22,14 @@ grow_vertical = 2
 mouse_filter = 2
 color = Color(0.047, 0.039, 0.0666667, 1)
 
-[node name="Paper" parent="." instance=ExtResource("2_paper")]
+[node name="Paper" parent="." unique_id=637247876 instance=ExtResource("2_paper")]
 layout_mode = 1
-anchors_preset = 0
 offset_left = 180.0
 offset_top = 120.0
 offset_right = 600.0
 offset_bottom = 540.0
 
-[node name="Readout" type="Label" parent="."]
+[node name="Readout" type="Label" parent="." unique_id=231364666]
 layout_mode = 1
 anchors_preset = 12
 anchor_top = 1.0

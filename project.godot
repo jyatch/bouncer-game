@@ -17,7 +17,9 @@ config/icon="res://Images/icon.svg"
 
 [autoload]
 
-Transition="*uid://dvg27le0avki4"
+Transition="*res://Scripts/transition.gd"
+DoodleAI="*res://Scripts/doodle_ai.gd"
+QuickDraw="*res://Scripts/quickdraw.gd"
 PlayerData="*uid://bsovxllbeqi8y"
 
 [display]

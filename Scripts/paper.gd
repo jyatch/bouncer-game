@@ -1,13 +1,16 @@
-extends SubViewportContainer
+extends Control
 
 ## A sheet of paper you can draw on, that refuses to hold still.
 ##
-## Drawing happens inside a SubViewport, which means:
-##   - stroke coordinates are always paper-local, no matter where the paper is
-##   - capture_png() gives you a clean image with no background bleed
+## Structure matters here:
+##   Paper (Control)            <- this script, owns input + movement
+##     View (SubViewportContainer, mouse_filter = IGNORE)
+##       SubViewport            <- drawing lives in here
+##         BG, Sheet
 ##
-## The paper moves while you draw. That is the entire joke: your pen stays
-## where the mouse is on screen, and the sheet slides out from under it.
+## Input is handled with _gui_input on a plain Control, so event.position is
+## already paper-local and Godot keeps routing drag events here even when the
+## sheet slides out from under the cursor.
 
 signal stroke_finished
 signal edge_hit(normal: Vector2)
@@ -16,8 +19,10 @@ signal edge_hit(normal: Vector2)
 @export_group("Look")
 @export var paper_color: Color = Color(0.968, 0.952, 0.902)
 @export var ink_color: Color = Color(0.105, 0.09, 0.129)
-@export var ink_width: float = 5.0
-## Smooth lines read better to the AI. Turn off if you want a jagged pixel look.
+## Thin strokes lose most of their mass once _prep()/_to_grid() downscale
+## the capture to 224/128/28px and binarize -- keep this near 18, not 5.
+@export var ink_width: float = 18.0
+## Smooth lines read better to the AI. Turn off for a jagged pixel look.
 @export var antialias: bool = true
 
 @export_group("Bounce")
@@ -36,47 +41,46 @@ var _strokes: Array[PackedVector2Array] = []
 var _current: PackedVector2Array = PackedVector2Array()
 var _drawing: bool = false
 
-@onready var _viewport: SubViewport = $SubViewport
-@onready var _sheet: Node2D = $SubViewport/Sheet
-@onready var _bg: ColorRect = $SubViewport/BG
+@onready var _viewport: SubViewport = $View/SubViewport
+@onready var _sheet: Node2D = $View/SubViewport/Sheet
+@onready var _bg: ColorRect = $View/SubViewport/BG
 
 const MIN_POINT_DISTANCE := 2.5
 
 
 func _ready() -> void:
-	# CanvasItem emits `draw` when it redraws, so we can do all the rendering
-	# from this script instead of giving the Sheet its own.
+	# This Control must be able to receive mouse events itself.
+	mouse_filter = Control.MOUSE_FILTER_STOP
+
+	# CanvasItem emits `draw` when it redraws, so all rendering can live in
+	# this script instead of giving the Sheet its own.
 	_sheet.draw.connect(_on_sheet_draw)
 	_bg.color = paper_color
+	_sheet.queue_redraw()
 	set_club(0)
 
 
 # ---------------------------------------------------------------- drawing ---
 
-func _unhandled_input(event: InputEvent) -> void:
+func _gui_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
 		if event.pressed:
-			var p := _to_paper(event.position)
-			# Only start a stroke if the click actually landed on the sheet.
-			if Rect2(Vector2.ZERO, size).has_point(p):
-				_drawing = true
-				_current = PackedVector2Array([p])
-				_sheet.queue_redraw()
-				get_viewport().set_input_as_handled()
+			_drawing = true
+			_current = PackedVector2Array([event.position])
+			_sheet.queue_redraw()
+			accept_event()
 		elif _drawing:
 			_end_stroke()
+			accept_event()
 
 	elif event is InputEventMouseMotion and _drawing:
-		var p := _to_paper(event.position).clamp(Vector2.ZERO, size)
+		# Clamped, so dragging past the edge slides the pen along it instead
+		# of drawing off the page.
+		var p: Vector2 = event.position.clamp(Vector2.ZERO, size)
 		if _current.is_empty() or p.distance_to(_current[-1]) >= MIN_POINT_DISTANCE:
 			_current.append(p)
 			_sheet.queue_redraw()
-
-
-## Screen position -> paper-local position. Uses the paper's position *right
-## now*, which is what makes drawing on a moving sheet feel the way it does.
-func _to_paper(screen_pos: Vector2) -> Vector2:
-	return screen_pos - global_position
+		accept_event()
 
 
 func _end_stroke() -> void:
@@ -153,6 +157,11 @@ func stop_bouncing() -> void:
 
 
 func _process(delta: float) -> void:
+	# Safety net: if the release happened somewhere we never saw it, close
+	# the stroke rather than drawing forever.
+	if _drawing and not Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
+		_end_stroke()
+
 	if not bouncing:
 		return
 
@@ -193,23 +202,19 @@ func _process(delta: float) -> void:
 
 # ---------------------------------------------------------------- capture ---
 
-## Returns PNG bytes of just the drawing, ready to base64 and send to the AI.
+## PNG bytes of just the drawing, ready to base64 and send to the AI.
 ## Must be awaited:  var png: PackedByteArray = await paper.capture_png()
 func capture_png(max_side: int = 512) -> PackedByteArray:
-	# Wait for the renderer to finish the current frame, or we may grab a
-	# texture that doesn't include the most recent stroke.
+	# Wait for the renderer to finish the frame, or the most recent stroke
+	# may be missing from the texture.
 	await RenderingServer.frame_post_draw
 
 	var img: Image = _viewport.get_texture().get_image()
 
 	var longest: int = maxi(img.get_width(), img.get_height())
 	if max_side > 0 and longest > max_side:
-		var scale: float = float(max_side) / float(longest)
-		img.resize(
-			int(img.get_width() * scale),
-			int(img.get_height() * scale),
-			Image.INTERPOLATE_BILINEAR
-		)
+		var s: float = float(max_side) / float(longest)
+		img.resize(int(img.get_width() * s), int(img.get_height() * s), Image.INTERPOLATE_BILINEAR)
 
 	return img.save_png_to_buffer()
 
@@ -218,3 +223,7 @@ func capture_png(max_side: int = 512) -> PackedByteArray:
 func capture_base64(max_side: int = 512) -> String:
 	var png: PackedByteArray = await capture_png(max_side)
 	return Marshalls.raw_to_base64(png)
+	
+func capture_image() -> Image:
+	await RenderingServer.frame_post_draw
+	return _viewport.get_texture().get_image()
