@@ -1,14 +1,89 @@
-[gd_scene format=3 uid="uid://co7sa2h6u5raj"]
+[gd_scene format=3 uid="uid://sebrajoc756"]
 
-[ext_resource type="PackedScene" path="res://Scenes/paper.tscn" id="1_r150o"]
+[ext_resource type="Script" uid="uid://0kick23rfihm" path="res://Scenes/main.gd" id="1_kln2b"]
+[ext_resource type="PackedScene" uid="uid://cpyxh3r4e84fb" path="res://Scenes/paper.tscn" id="1_r150o"]
+[ext_resource type="Texture2D" uid="uid://ewsjptiyfmt2" path="res://Images/aakash-sprite.png" id="2_idj7w"]
+[ext_resource type="Texture2D" uid="uid://0tqkfijumvvw" path="res://Images/jake-sprite.png" id="4_rgh2o"]
+[ext_resource type="Texture2D" uid="uid://bmtbstib5d5os" path="res://Images/text-bubble-pixilart.png" id="5_v1gob"]
+[ext_resource type="FontFile" uid="uid://blxtr3o4uc1kv" path="res://fonts/PixeloidSans-lxa3y.ttf" id="6_jw32o"]
 
-[node name="Node2D" type="Node2D" unique_id=1064176562]
+[sub_resource type="AtlasTexture" id="AtlasTexture_kln2b"]
+atlas = ExtResource("2_idj7w")
+region = Rect2(0, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rgh2o"]
+atlas = ExtResource("2_idj7w")
+region = Rect2(100, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pbw6q"]
+atlas = ExtResource("2_idj7w")
+region = Rect2(200, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v1gob"]
+atlas = ExtResource("2_idj7w")
+region = Rect2(300, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jw32o"]
+atlas = ExtResource("2_idj7w")
+region = Rect2(400, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_50glp"]
+atlas = ExtResource("4_rgh2o")
+region = Rect2(0, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vy5pj"]
+atlas = ExtResource("4_rgh2o")
+region = Rect2(100, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bmxlf"]
+atlas = ExtResource("4_rgh2o")
+region = Rect2(200, 0, 100, 100)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_yd04n"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kln2b")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rgh2o")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pbw6q")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v1gob")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jw32o")
+}],
+"loop": 1,
+"name": &"Aakash",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_50glp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vy5pj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bmxlf")
+}],
+"loop": 1,
+"name": &"Jake",
+"speed": 5.0
+}]
+
+[node name="Main" type="Node2D" unique_id=1064176562]
+script = ExtResource("1_kln2b")
 
 [node name="Panel" type="Panel" parent="." unique_id=1806718338]
-offset_left = 313.0
-offset_top = 140.0
-offset_right = 1132.0
-offset_bottom = 636.0
+offset_left = 324.0
+offset_top = 139.0
+offset_right = 1143.0
+offset_bottom = 635.0
 
 [node name="Control" type="Control" parent="Panel" unique_id=114831488]
 anchors_preset = 0
@@ -33,3 +108,29 @@ offset_right = 259.0
 offset_bottom = 347.0
 bounce_box = NodePath("../TransBox")
 bouncing = true
+
+[node name="Bouncer" type="AnimatedSprite2D" parent="." unique_id=348846333]
+position = Vector2(173, 401.00003)
+scale = Vector2(4.3650002, 4.91)
+sprite_frames = SubResource("SpriteFrames_yd04n")
+animation = &"Jake"
+frame_progress = 0.5167927
+
+[node name="SpeechBubble" type="TextureRect" parent="." unique_id=603636473]
+modulate = Color(1, 1, 1, 0.8784314)
+offset_top = 418.0
+offset_right = 368.0
+offset_bottom = 673.0
+texture = ExtResource("5_v1gob")
+expand_mode = 1
+
+[node name="Yap" type="Label" parent="SpeechBubble" unique_id=1182168943]
+layout_mode = 0
+offset_left = 52.0
+offset_top = 128.0
+offset_right = 281.0
+offset_bottom = 189.0
+theme_override_colors/font_color = Color(0.00069389754, 0.00069389766, 0.0006938976, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("6_jw32o")
+text = "blah blah blah"
