@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://0kick23rfihm" path="res://Scripts/main.gd" id="1_kln2b"]
 [ext_resource type="PackedScene" path="res://Scenes/paper.tscn" id="1_r150o"]
+[ext_resource type="Texture2D" uid="uid://clnmf3takmo5g" path="res://Images/clubBG.png" id="2_50glp"]
 [ext_resource type="Texture2D" uid="uid://ewsjptiyfmt2" path="res://Images/aakash-sprite.png" id="2_idj7w"]
 [ext_resource type="Texture2D" uid="uid://0tqkfijumvvw" path="res://Images/jake-sprite.png" id="4_rgh2o"]
 [ext_resource type="Texture2D" uid="uid://bmtbstib5d5os" path="res://Images/text-bubble-pixilart.png" id="5_v1gob"]
@@ -80,6 +81,12 @@ animations = [{
 [node name="Main" type="Node2D" unique_id=1064176562]
 script = ExtResource("1_kln2b")
 
+[node name="Background" type="TextureRect" parent="." unique_id=936449839]
+offset_right = 1152.0
+offset_bottom = 647.0
+texture = ExtResource("2_50glp")
+expand_mode = 1
+
 [node name="Panel" type="Panel" parent="." unique_id=1806718338]
 offset_left = 324.0
 offset_top = 139.0
@@ -99,7 +106,7 @@ offset_left = -41.0
 offset_top = -3.0
 offset_right = 781.0
 offset_bottom = 493.0
-color = Color(0.6480781, 0.64807814, 0.6480781, 0.10980392)
+color = Color(0.0497766, 0.049776666, 0.049776636, 0.6627451)
 
 [node name="Paper" parent="Panel" unique_id=996822909 node_paths=PackedStringArray("bounce_box") instance=ExtResource("1_r150o")]
 layout_mode = 0
@@ -128,9 +135,9 @@ expand_mode = 1
 [node name="Yap" type="Label" parent="SpeechBubble" unique_id=1182168943]
 layout_mode = 0
 offset_left = 52.0
-offset_top = 128.0
+offset_top = 114.0
 offset_right = 281.0
-offset_bottom = 189.0
+offset_bottom = 193.0
 theme_override_colors/font_color = Color(0.00069389754, 0.00069389766, 0.0006938976, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("6_jw32o")
@@ -159,9 +166,9 @@ region_enabled = true
 region_rect = Rect2(129.5, 97.75, 28.5, 27.5)
 
 [node name="BetButton" type="Button" parent="." unique_id=63504043]
-offset_left = 223.0
+offset_left = 281.0
 offset_top = 582.0
-offset_right = 343.0
+offset_right = 401.0
 offset_bottom = 632.0
 text = "Bet!"
 

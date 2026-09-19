@@ -39,14 +39,20 @@ func start_round() -> void:
 func _on_bet_button_pressed() -> void:
 	if waiting_for_bet == false:
 		# Player pressed HI!
-
 		speech_bubble.show()
-		yap.text = "If you're really sober, draw me a _____"
 
+		# Choose dialogue based on character
+		if bouncer.animation == "Jake":
+			yap.text = "👉👈, If you're really sober, draw me a _____ UwU."
+
+		elif bouncer.animation == "Aakash":
+			yap.text = "You look madddd cooked boi. Draw me ___ if you are not."
+
+		elif bouncer.animation == "Patrick":
+			yap.text = "Senpai~ you look a little drunk... prove me wrong and draw ___! >w<"
+		# Change HI! into BET!
 		bet_button.text = "BET!"
-
 		waiting_for_bet = true
-
 	else:
 		# Player pressed BET!
 		bet_button.hide()
@@ -55,11 +61,11 @@ func _on_bet_button_pressed() -> void:
 		paper.show()
 		paper.start_bouncing()
 
-
 func _on_submit_pressed() -> void:
 	reset_button.hide()
 	submit_button.hide()
 	paper.stop_bouncing()
+	
 
 func _on_reset_pressed() -> void:
 	# Reset drawing here later
