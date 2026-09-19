@@ -7,11 +7,13 @@ extends Node2D
 @onready var bet_button = $BetButton
 @onready var submit_button = $Submit
 @onready var reset_button = $Reset
+@onready var nametag = $Nametag
 
 # Keeps track of what the BetButton currently does
 var waiting_for_bet := false
 
 func _ready() -> void:
+	nametag.text = "TONIGHT's Alcoholic: " + PlayerData.player_name
 	bouncer.play("Jake")
 
 	paper.hide()
