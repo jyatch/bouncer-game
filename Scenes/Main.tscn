@@ -1,13 +1,77 @@
 [gd_scene format=3 uid="uid://co7sa2h6u5raj"]
 
 [ext_resource type="Script" uid="uid://0kick23rfihm" path="res://Scripts/main.gd" id="1_kln2b"]
-[ext_resource type="PackedScene" path="res://Scenes/paper.tscn" id="1_r150o"]
-[ext_resource type="Texture2D" uid="uid://clnmf3takmo5g" path="res://Images/clubBG.png" id="2_50glp"]
+[ext_resource type="PackedScene" uid="uid://d3ri4f5v0yjqf" path="res://Scenes/paper.tscn" id="1_r150o"]
+[ext_resource type="Texture2D" uid="uid://b0tkpm4eiypm4" path="res://Images/BG-sprite.png" id="2_50glp"]
 [ext_resource type="Texture2D" uid="uid://ewsjptiyfmt2" path="res://Images/aakash-sprite.png" id="2_idj7w"]
 [ext_resource type="Texture2D" uid="uid://0tqkfijumvvw" path="res://Images/jake-sprite.png" id="4_rgh2o"]
 [ext_resource type="Texture2D" uid="uid://bmtbstib5d5os" path="res://Images/text-bubble-pixilart.png" id="5_v1gob"]
 [ext_resource type="FontFile" uid="uid://blxtr3o4uc1kv" path="res://fonts/PixeloidSans-lxa3y.ttf" id="6_jw32o"]
 [ext_resource type="Texture2D" uid="uid://bhpjxysf2fg3t" path="res://Images/FreeHorrorUi.png" id="7_jw32o"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4kpch"]
+atlas = ExtResource("2_50glp")
+region = Rect2(0, 0, 320, 160)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_grg3l"]
+atlas = ExtResource("2_50glp")
+region = Rect2(320, 0, 320, 160)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_frkhe"]
+atlas = ExtResource("2_50glp")
+region = Rect2(640, 0, 320, 160)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1p5hy"]
+atlas = ExtResource("2_50glp")
+region = Rect2(960, 0, 320, 160)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h1m7h"]
+atlas = ExtResource("2_50glp")
+region = Rect2(1280, 0, 320, 160)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_erwvk"]
+atlas = ExtResource("2_50glp")
+region = Rect2(1600, 0, 320, 160)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2w5on"]
+atlas = ExtResource("2_50glp")
+region = Rect2(1920, 0, 320, 160)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_346fj"]
+atlas = ExtResource("2_50glp")
+region = Rect2(2240, 0, 320, 160)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_p1u0j"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4kpch")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_grg3l")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_frkhe")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1p5hy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h1m7h")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_erwvk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2w5on")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_346fj")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_kln2b"]
 atlas = ExtResource("2_idj7w")
@@ -81,12 +145,10 @@ animations = [{
 [node name="Main" type="Node2D" unique_id=1064176562]
 script = ExtResource("1_kln2b")
 
-[node name="Background" type="TextureRect" parent="." unique_id=936449839]
-offset_right = 1152.0
-offset_bottom = 647.0
-texture = ExtResource("2_50glp")
-expand_mode = 1
-metadata/_edit_lock_ = true
+[node name="BG" type="AnimatedSprite2D" parent="." unique_id=474706474]
+position = Vector2(577, 320)
+scale = Vector2(3.59375, 4.0875)
+sprite_frames = SubResource("SpriteFrames_p1u0j")
 
 [node name="Panel" type="Panel" parent="." unique_id=1806718338]
 offset_left = 324.0
@@ -103,20 +165,15 @@ offset_bottom = 493.0
 
 [node name="TransBox" type="ColorRect" parent="Panel" unique_id=1787008851]
 layout_mode = 0
-offset_left = -41.0
-offset_top = -3.0
-offset_right = 781.0
-offset_bottom = 493.0
+offset_left = -21.0
+offset_right = 801.0
+offset_bottom = 496.0
 color = Color(0.0497766, 0.049776666, 0.049776636, 0.6627451)
 
-[node name="Paper" parent="Panel" unique_id=996822909 node_paths=PackedStringArray("bounce_box") instance=ExtResource("1_r150o")]
+[node name="Paper" parent="Panel" unique_id=1713623816 instance=ExtResource("1_r150o")]
 layout_mode = 0
-offset_left = 9.0
-offset_top = -3.0
-offset_right = 259.0
-offset_bottom = 347.0
-bounce_box = NodePath("../TransBox")
-bouncing = true
+offset_left = -21.0
+offset_right = 229.0
 
 [node name="Bouncer" type="AnimatedSprite2D" parent="." unique_id=348846333]
 position = Vector2(173, 401.00003)

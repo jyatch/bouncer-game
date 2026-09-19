@@ -2,6 +2,7 @@ extends Node2D
 
 @onready var paper = $Panel/Paper
 @onready var bouncer = $Bouncer
+@onready var BG = $BG
 @onready var speech_bubble = $SpeechBubble
 @onready var yap = $SpeechBubble/Yap
 @onready var bet_button = $BetButton
@@ -15,6 +16,7 @@ var waiting_for_bet := false
 func _ready() -> void:
 	nametag.text = "TONIGHT's Alcoholic: " + PlayerData.player_name
 	bouncer.play("Jake")
+	BG.play()
 
 	paper.hide()
 	speech_bubble.hide()
@@ -45,7 +47,7 @@ func _on_bet_button_pressed() -> void:
 
 		# Choose dialogue based on character
 		if bouncer.animation == "Jake":
-			yap.text = "👉👈, If you're really sober, draw me a _____ UwU."
+			yap.text = "If you're really sober, draw me a _____ UwU."
 
 		elif bouncer.animation == "Aakash":
 			yap.text = "You look madddd cooked boi. Draw me ___ if you are not."
