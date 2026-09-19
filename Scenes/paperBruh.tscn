@@ -1,0 +1,37 @@
+[gd_scene format=3 uid="uid://dan6nms5upj3b"]
+
+[ext_resource type="Script" uid="uid://cec7euisyl58r" path="res://Scripts/paperBruh.gd" id="1_paper"]
+
+[node name="PaperBruh" type="Control" unique_id=1085333695]
+custom_minimum_size = Vector2(420, 420)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 420.0
+offset_bottom = 420.0
+script = ExtResource("1_paper")
+
+[node name="View" type="SubViewportContainer" parent="." unique_id=969506272]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+stretch = true
+
+[node name="SubViewport" type="SubViewport" parent="View" unique_id=1185553779]
+handle_input_locally = false
+size = Vector2i(420, 420)
+render_target_update_mode = 4
+
+[node name="BG" type="ColorRect" parent="View/SubViewport" unique_id=1857010407]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.968627, 0.952941, 0.901961, 1)
+
+[node name="Sheet" type="Node2D" parent="View/SubViewport" unique_id=503418087]
