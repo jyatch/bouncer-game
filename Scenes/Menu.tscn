@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://b0e1fynjdl35t"]
+
+[ext_resource type="FontFile" uid="uid://bl4kr2y42iggr" path="res://fonts/PixeloidMono-nAOpP.ttf" id="1_3kf3n"]
+[ext_resource type="Script" uid="uid://bef5bavhngai5" path="res://Scripts/Menubutton.gd" id="2_6pedr"]
+
+[sub_resource type="Theme" id="Theme_beu5a"]
+default_font = ExtResource("1_3kf3n")
+
+[node name="Menu" type="Node2D" unique_id=1651934711]
+
+[node name="Button" type="Button" parent="." unique_id=1118021962]
+offset_left = 485.0
+offset_top = 260.0
+offset_right = 659.0
+offset_bottom = 349.0
+theme = SubResource("Theme_beu5a")
+text = "PLAY"
+script = ExtResource("2_6pedr")
+
+[connection signal="pressed" from="Button" to="Button" method="_on_play_pressed"]

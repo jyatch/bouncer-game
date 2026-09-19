@@ -1,0 +1,6 @@
+[gd_resource type="Theme" format=3 uid="uid://c1oriq4f207wx"]
+
+[ext_resource type="FontFile" uid="uid://bl4kr2y42iggr" path="res://fonts/PixeloidMono-nAOpP.ttf" id="1_wpbi6"]
+
+[resource]
+default_font = ExtResource("1_wpbi6")
