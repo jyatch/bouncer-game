@@ -1,14 +1,74 @@
 extends Node2D
 
+@onready var paper = $Panel/Paper
+@onready var bouncer = $Bouncer
+@onready var speech_bubble = $SpeechBubble
+@onready var yap = $SpeechBubble/Yap
+@onready var bet_button = $BetButton
+@onready var submit_button = $Submit
+@onready var reset_button = $Reset
+@onready var nametag = $Nametag
 
-# Called when the node enters the scene tree for the first time.
+# Keeps track of what the BetButton currently does
+var waiting_for_bet := false
+
 func _ready() -> void:
-	$Bouncer.play("Jake")
-	$SpeechBubble.hide()
+	nametag.text = "TONIGHT's Alcoholic: " + PlayerData.player_name
+	bouncer.play("Jake")
+
+	paper.hide()
+	speech_bubble.hide()
+	submit_button.hide()
+	reset_button.hide()
+
+	start_round()
+
+
+func start_round() -> void:
+	# Beginning of EVERY round
+	paper.hide()
+	speech_bubble.hide()
+	submit_button.hide()
+	reset_button.hide()
+
+	# Button starts as HI!
+	bet_button.text = "HI!"
+	bet_button.show()
+
+	waiting_for_bet = false
+
+
+func _on_bet_button_pressed() -> void:
+	if waiting_for_bet == false:
+		# Player pressed HI!
+		speech_bubble.show()
+
+		# Choose dialogue based on character
+		if bouncer.animation == "Jake":
+			yap.text = "👉👈, If you're really sober, draw me a _____ UwU."
+
+		elif bouncer.animation == "Aakash":
+			yap.text = "You look madddd cooked boi. Draw me ___ if you are not."
+
+		elif bouncer.animation == "Patrick":
+			yap.text = "Senpai~ you look a little drunk... prove me wrong and draw ___! >w<"
+		# Change HI! into BET!
+		bet_button.text = "BET!"
+		waiting_for_bet = true
+	else:
+		# Player pressed BET!
+		bet_button.hide()
+		reset_button.show()
+		submit_button.show()
+		paper.show()
+		paper.start_bouncing()
+
+func _on_submit_pressed() -> void:
+	reset_button.hide()
+	submit_button.hide()
+	paper.stop_bouncing()
 	
-	pass # Replace with function body.
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _on_reset_pressed() -> void:
+	# Reset drawing here later
 	pass
