@@ -1,26 +1,31 @@
-[gd_scene format=3]
+[gd_scene format=3 uid="uid://cpyxh3r4e84fb"]
 
 [ext_resource type="Script" uid="uid://ci3yjtaxocx5" path="res://Scripts/paper.gd" id="1_paper"]
 
-[node name="Paper" type="SubViewportContainer"]
-custom_minimum_size = Vector2(420, 420)
-offset_right = 420.0
-offset_bottom = 420.0
+[node name="Paper" type="SubViewportContainer" unique_id=996822909]
+custom_minimum_size = Vector2(250, 350)
+offset_right = 250.0
+offset_bottom = 350.0
 mouse_filter = 2
 script = ExtResource("1_paper")
 
-[node name="SubViewport" type="SubViewport" parent="."]
+[node name="SubViewport" type="SubViewport" parent="." unique_id=545374303]
+transparent_bg = true
 handle_input_locally = false
-size = Vector2i(420, 420)
+size = Vector2i(250, 350)
 render_target_update_mode = 4
 
-[node name="BG" type="ColorRect" parent="SubViewport"]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
+[node name="BG" type="ColorRect" parent="SubViewport" unique_id=242744355]
+anchors_preset = -1
+anchor_right = 0.69500005
+anchor_bottom = 0.919
+offset_left = 2.0
+offset_top = 2.0
+offset_right = 78.249985
+offset_bottom = 30.349976
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 color = Color(0.968627, 0.952941, 0.901961, 1)
 
-[node name="Sheet" type="Node2D" parent="SubViewport"]
+[node name="Sheet" type="Node2D" parent="SubViewport" unique_id=886812808]

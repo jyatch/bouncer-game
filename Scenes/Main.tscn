@@ -1,3 +1,35 @@
 [gd_scene format=3 uid="uid://co7sa2h6u5raj"]
 
+[ext_resource type="PackedScene" uid="uid://cpyxh3r4e84fb" path="res://Scenes/paper.tscn" id="1_r150o"]
+
 [node name="Node2D" type="Node2D" unique_id=1064176562]
+
+[node name="Panel" type="Panel" parent="." unique_id=1806718338]
+offset_left = 313.0
+offset_top = 140.0
+offset_right = 1132.0
+offset_bottom = 636.0
+
+[node name="Control" type="Control" parent="Panel" unique_id=114831488]
+anchors_preset = 0
+offset_left = 9.0
+offset_top = -3.0
+offset_right = 828.0
+offset_bottom = 493.0
+
+[node name="TransBox" type="ColorRect" parent="Panel" unique_id=1787008851]
+layout_mode = 0
+offset_left = 9.0
+offset_top = -3.0
+offset_right = 831.0
+offset_bottom = 493.0
+color = Color(0.6480781, 0.64807814, 0.6480781, 0.10980392)
+
+[node name="Paper" parent="Panel" unique_id=996822909 node_paths=PackedStringArray("bounce_box") instance=ExtResource("1_r150o")]
+layout_mode = 0
+offset_left = 9.0
+offset_top = -3.0
+offset_right = 259.0
+offset_bottom = 347.0
+bounce_box = NodePath("../TransBox")
+bouncing = true

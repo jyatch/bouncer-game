@@ -12,6 +12,7 @@ extends SubViewportContainer
 signal stroke_finished
 signal edge_hit(normal: Vector2)
 
+@export var bounce_box: Control
 @export_group("Look")
 @export var paper_color: Color = Color(0.968, 0.952, 0.902)
 @export var ink_color: Color = Color(0.105, 0.09, 0.129)
@@ -155,32 +156,40 @@ func _process(delta: float) -> void:
 	if not bouncing:
 		return
 
+	if bounce_box == null:
+		return
+
 	position += velocity * delta
 
-	var bounds: Vector2 = get_viewport_rect().size
+	var bounds := bounce_box.get_global_rect()
 	var hit := Vector2.ZERO
 
-	if position.x <= 0.0:
-		position.x = 0.0
+	# LEFT
+	if global_position.x <= bounds.position.x:
+		global_position.x = bounds.position.x
 		velocity.x = absf(velocity.x)
 		hit = Vector2.RIGHT
-	elif position.x + size.x >= bounds.x:
-		position.x = bounds.x - size.x
+
+	# RIGHT
+	elif global_position.x + size.x >= bounds.end.x:
+		global_position.x = bounds.end.x - size.x
 		velocity.x = -absf(velocity.x)
 		hit = Vector2.LEFT
 
-	if position.y <= 0.0:
-		position.y = 0.0
+	# TOP
+	if global_position.y <= bounds.position.y:
+		global_position.y = bounds.position.y
 		velocity.y = absf(velocity.y)
 		hit = Vector2.DOWN
-	elif position.y + size.y >= bounds.y:
-		position.y = bounds.y - size.y
+
+	# BOTTOM
+	elif global_position.y + size.y >= bounds.end.y:
+		global_position.y = bounds.end.y - size.y
 		velocity.y = -absf(velocity.y)
 		hit = Vector2.UP
 
 	if hit != Vector2.ZERO:
 		edge_hit.emit(hit)
-
 
 # ---------------------------------------------------------------- capture ---
 
