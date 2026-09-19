@@ -1,7 +1,6 @@
 [gd_scene format=3 uid="uid://c7iau3nky63kh"]
 
 [ext_resource type="Script" uid="uid://dtpdxblatirtv" path="res://Scripts/how_to_play.gd" id="1_wbcyv"]
-[ext_resource type="PackedScene" uid="uid://co7sa2h6u5raj" path="res://Scenes/Main.tscn" id="2_0mtfm"]
 [ext_resource type="FontFile" uid="uid://blxtr3o4uc1kv" path="res://fonts/PixeloidSans-lxa3y.ttf" id="3_gmf7q"]
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_yi6e2"]
@@ -16,7 +15,6 @@ offset_right = -2.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_wbcyv")
-game_scene = ExtResource("2_0mtfm")
 start_button = NodePath("StartButton")
 name_input = NodePath("TextureRect/NameInput")
 
@@ -55,7 +53,7 @@ text = "How to play!
 
 You are trying to get into as many BARS as possible after a day long pre-game
 
-Prove yor're not toooo drunk by drawing what the bouncer asks!
+Prove you're not toooo drunk by drawing what the bouncer asks!
 
 Have fun!
 
@@ -78,6 +76,7 @@ offset_right = 91.0
 offset_bottom = -140.0
 grow_horizontal = 2
 grow_vertical = 0
+theme_override_fonts/font = ExtResource("3_gmf7q")
 
 [node name="StartButton" type="Button" parent="." unique_id=281878688]
 layout_mode = 1

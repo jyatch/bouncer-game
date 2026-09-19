@@ -1,19 +1,40 @@
 [gd_scene format=3 uid="uid://b0e1fynjdl35t"]
 
 [ext_resource type="FontFile" uid="uid://bl4kr2y42iggr" path="res://fonts/PixeloidMono-nAOpP.ttf" id="1_3kf3n"]
+[ext_resource type="Texture2D" uid="uid://mdwh2kjef1tq" path="res://Images/istockphoto-1053940970-612x612 (1).png" id="1_ma218"]
 [ext_resource type="Script" uid="uid://bef5bavhngai5" path="res://Scripts/Menubutton.gd" id="2_6pedr"]
+[ext_resource type="Script" uid="uid://cukmrp07bo4di" path="res://Scenes/texture_rect_2.gd" id="2_s2c3o"]
+[ext_resource type="Texture2D" uid="uid://bb5stkuodlyib" path="res://Images/Logo (2).png" id="3_syfuq"]
 
 [sub_resource type="Theme" id="Theme_beu5a"]
 default_font = ExtResource("1_3kf3n")
+default_font_size = 60
 
 [node name="Menu" type="Node2D" unique_id=1651934711]
 
+[node name="TextureRect" type="TextureRect" parent="." unique_id=599789557]
+offset_left = -25.0
+offset_top = -17.0
+offset_right = 1173.1993
+offset_bottom = 668.0
+texture = ExtResource("1_ma218")
+
+[node name="TextureRect2" type="TextureRect" parent="." unique_id=1420417828]
+offset_left = 110.0
+offset_top = -50.0
+offset_right = 1009.55566
+offset_bottom = 456.0
+texture = ExtResource("3_syfuq")
+expand_mode = 1
+script = ExtResource("2_s2c3o")
+
 [node name="Button" type="Button" parent="." unique_id=1118021962]
-offset_left = 485.0
-offset_top = 260.0
-offset_right = 659.0
-offset_bottom = 349.0
+offset_left = 433.0
+offset_top = 450.0
+offset_right = 696.0
+offset_bottom = 547.0
 theme = SubResource("Theme_beu5a")
+theme_type_variation = &"FlatButton"
 text = "PLAY"
 script = ExtResource("2_6pedr")
 
