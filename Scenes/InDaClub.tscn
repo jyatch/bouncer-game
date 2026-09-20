@@ -85,8 +85,11 @@ anchor_bottom = 0.5
 offset_left = 139.0
 offset_top = 252.0
 offset_right = 1076.0
-offset_bottom = 343.0
+offset_bottom = 549.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("3_vcpgh")
-text = "2 Vodka Shots Deeper..."
+text = "2 Vodka Shots Deeper...
+
+ON TO THE NEXT CLUB!!!
+"

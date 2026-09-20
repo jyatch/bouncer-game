@@ -38,6 +38,12 @@ const ROUND_SECONDS := 15
 var time_left: int = ROUND_SECONDS
 var current_level = 1
 
+## The "N Vodka Shots Deeper..." interstitial. Instanced as an overlay on top
+## of Main (not a full Transition.change_scene) so club/lives/level state
+## here survives -- a real scene swap would free this whole tree and lose it.
+const IN_DA_CLUB_SCENE := preload("res://Scenes/InDaClub.tscn")
+const IN_DA_CLUB_SECONDS := 5.0
+
 
 func _ready() -> void:
 	submit_button.button_down.connect(_on_submit_button_down)
@@ -217,10 +223,13 @@ func _on_submit_pressed() -> void:
 		_club_index += 1
 		paper.set_club(_club_index)
 		_reset_lives()
-		
+
 		current_level += 1
+		paper.hide()
+		speech_bubble.hide()
+		await _show_in_da_club_card()
 		_change_bouncer()
-		
+
 		start_round()
 		return
 
@@ -310,6 +319,15 @@ func _on_reset_pressed() -> void:
 	paper.clear()
 	paper.start_bouncing()
 	_show_prompt_dialogue()
+
+## Pops the "N Vodka Shots Deeper..." card on top of the scene and holds it
+## for IN_DA_CLUB_SECONDS before tearing it down again.
+func _show_in_da_club_card() -> void:
+	var card := IN_DA_CLUB_SCENE.instantiate()
+	add_child(card)
+	await get_tree().create_timer(IN_DA_CLUB_SECONDS).timeout
+	card.queue_free()
+
 
 func _change_bouncer():
 	match current_level:
