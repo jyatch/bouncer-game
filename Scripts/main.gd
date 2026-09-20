@@ -228,6 +228,12 @@ func _on_submit_pressed() -> void:
 		reset_button.hide()
 		await get_tree().create_timer(1.5).timeout
 
+		# Patrick is the last bouncer -- beating him ends the run in a win,
+		# not another club.
+		if current_level >= 4:
+			_win_game()
+			return
+
 		_club_index += 1
 		paper.set_club(_club_index)
 		_reset_lives()
@@ -274,6 +280,14 @@ func _on_round_timer_timeout() -> void:
 		timer_label.text = "0"
 		yap.text = "\"times up! Try Again! Draw me a %s!\"" % _target
 		_lose_life()
+
+
+## Patrick, the last bouncer, has been beaten -- the run ends in a win. A
+## real scene swap (not an overlay like the InDaClub card) since there's no
+## more Main state worth keeping once the run is over.
+func _win_game() -> void:
+	Music.fade_out(0.4)
+	Transition.change_scene("res://Scenes/bounceOutofClub.tscn")
 
 
 func _game_over() -> void:

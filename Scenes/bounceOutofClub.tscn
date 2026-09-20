@@ -1,6 +1,9 @@
 [gd_scene format=3 uid="uid://llmhcjha038o"]
 
+[ext_resource type="Script" uid="uid://5t51pwg8qapp" path="res://Scripts/bounce_outof_club.gd" id="1_e8bsj"]
 [ext_resource type="Texture2D" uid="uid://2qtmoajj2rxf" path="res://Images/bounceend-sprite.png" id="1_u314k"]
+[ext_resource type="Theme" uid="uid://c1oriq4f207wx" path="res://fonts/ui_theme.tres" id="3_wcyq3"]
+[ext_resource type="AudioStream" uid="uid://cd20r2wl73wlr" path="res://Audio Files/get-out.mp3" id="4_get_out_sfx"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_vd63s"]
 atlas = ExtResource("1_u314k")
@@ -91,10 +94,31 @@ animations = [{
 }],
 "loop": 0,
 "name": &"default",
-"speed": 6.0
+"speed": 10.0
 }]
 
 [node name="BounceOutofClub" type="Node2D" unique_id=452808810]
+script = ExtResource("1_e8bsj")
 
 [node name="endbounce" type="AnimatedSprite2D" parent="." unique_id=181519029]
+position = Vector2(451, 294)
+scale = Vector2(4.5374994, 4.5374994)
 sprite_frames = SubResource("SpriteFrames_p1u0j")
+
+[node name="GetOutSfx" type="AudioStreamPlayer" parent="." unique_id=1244897651]
+stream = ExtResource("4_get_out_sfx")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="." unique_id=695340402]
+offset_left = 2.0
+offset_top = 4.0
+offset_right = 1155.0
+offset_bottom = 651.0
+theme = ExtResource("3_wcyq3")
+text = "YOU GOT KICKED OUT!
+
+
+
+
+CONGRATS FOR HAVING THE BEST TIME OF YOUR LIFE!"
+horizontal_alignment = 1
+vertical_alignment = 1
