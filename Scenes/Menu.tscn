@@ -1,14 +1,10 @@
 [gd_scene format=3 uid="uid://b0e1fynjdl35t"]
 
-[ext_resource type="FontFile" uid="uid://bl4kr2y42iggr" path="res://fonts/PixeloidMono-nAOpP.ttf" id="1_3kf3n"]
 [ext_resource type="Texture2D" uid="uid://mdwh2kjef1tq" path="res://Images/istockphoto-1053940970-612x612 (1).png" id="1_ma218"]
-[ext_resource type="Script" uid="uid://bef5bavhngai5" path="res://Scripts/Menubutton.gd" id="2_6pedr"]
-[ext_resource type="Script" uid="uid://cukmrp07bo4di" path="res://Scenes/texture_rect_2.gd" id="2_s2c3o"]
+[ext_resource type="Script" uid="uid://cukmrp07bo4di" path="res://Scripts/texture_rect_2.gd" id="2_s2c3o"]
 [ext_resource type="Texture2D" uid="uid://bb5stkuodlyib" path="res://Images/Logo (2).png" id="3_syfuq"]
-
-[sub_resource type="Theme" id="Theme_beu5a"]
-default_font = ExtResource("1_3kf3n")
-default_font_size = 60
+[ext_resource type="Script" uid="uid://c3wegts7omfmc" path="res://Scripts/texture_button.gd" id="5_ma218"]
+[ext_resource type="FontFile" uid="uid://blxtr3o4uc1kv" path="res://fonts/PixeloidSans-lxa3y.ttf" id="6_idohh"]
 
 [node name="Menu" type="Node2D" unique_id=1651934711]
 
@@ -20,23 +16,27 @@ offset_bottom = 668.0
 texture = ExtResource("1_ma218")
 
 [node name="TextureRect2" type="TextureRect" parent="." unique_id=1420417828]
-offset_left = 110.0
-offset_top = -50.0
-offset_right = 1009.55566
-offset_bottom = 456.0
+offset_left = 125.0
+offset_top = 79.0
+offset_right = 1024.5557
+offset_bottom = 585.0
 texture = ExtResource("3_syfuq")
 expand_mode = 1
 script = ExtResource("2_s2c3o")
 
-[node name="Button" type="Button" parent="." unique_id=1118021962]
-texture_filter = 1
-offset_left = 430.0
-offset_top = 459.0
-offset_right = 691.0
-offset_bottom = 557.0
-theme = SubResource("Theme_beu5a")
-theme_type_variation = &"FlatButton"
-text = "PLAY"
-script = ExtResource("2_6pedr")
+[node name="RichTextLabel" type="RichTextLabel" parent="." unique_id=513040004]
+offset_left = -14.0
+offset_top = -43.0
+offset_right = 1182.0
+offset_bottom = 640.0
+theme_override_fonts/normal_font = ExtResource("6_idohh")
+text = "(Click Anywhere to Begin)"
+horizontal_alignment = 1
+vertical_alignment = 2
 
-[connection signal="pressed" from="Button" to="Button" method="_on_play_pressed"]
+[node name="TextureButton" type="TextureButton" parent="." unique_id=1689912454]
+offset_right = 1152.0
+offset_bottom = 644.0
+script = ExtResource("5_ma218")
+
+[connection signal="pressed" from="TextureButton" to="TextureButton" method="_on_pressed"]

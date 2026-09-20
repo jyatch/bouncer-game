@@ -170,10 +170,11 @@ offset_right = 801.0
 offset_bottom = 496.0
 color = Color(0.0497766, 0.049776666, 0.049776636, 0.6627451)
 
-[node name="Paper" parent="Panel" unique_id=1713623816 instance=ExtResource("1_r150o")]
+[node name="Paper" parent="Panel" unique_id=1713623816 node_paths=PackedStringArray("bounce_box") instance=ExtResource("1_r150o")]
 layout_mode = 0
 offset_left = -21.0
 offset_right = 229.0
+bounce_box = NodePath("../TransBox")
 
 [node name="Bouncer" type="AnimatedSprite2D" parent="." unique_id=348846333]
 position = Vector2(173, 401.00003)
@@ -224,10 +225,10 @@ region_enabled = true
 region_rect = Rect2(129.5, 97.75, 28.5, 27.5)
 
 [node name="BetButton" type="Button" parent="." unique_id=63504043]
-offset_left = 281.0
-offset_top = 582.0
-offset_right = 401.0
-offset_bottom = 632.0
+offset_left = 351.0
+offset_top = 589.0
+offset_right = 471.0
+offset_bottom = 639.0
 text = "Bet!"
 
 [node name="Submit" type="Button" parent="." unique_id=1625071687]
