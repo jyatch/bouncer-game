@@ -18,6 +18,7 @@ extends Node2D
 @onready var timer_label = $TimerLabel
 @onready var game_over_dim = $GameOverLayer/Dim
 @onready var wasted_image = $GameOverLayer/WastedImage
+@onready var wasted_sfx = $GameOverLayer/WastedSfx
 
 # Keeps track of what the BetButton currently does
 var waiting_for_bet := false
@@ -247,6 +248,7 @@ func _game_over() -> void:
 	wasted_image.scale = Vector2(0.6, 0.6)
 	wasted_image.pivot_offset = wasted_image.size / 2.0
 	wasted_image.show()
+	wasted_sfx.play()
 
 	var tween := create_tween()
 	tween.set_parallel(true)
@@ -255,9 +257,17 @@ func _game_over() -> void:
 		.set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
 	await tween.finished
 
+	# Hold on the wasted screen for as long as the sting actually plays,
+	# instead of guessing a fixed delay. If the stream is short/empty for
+	# some reason, `finished` never fires -- fall back to the old fixed
+	# hold so the scene can't get stuck here forever.
+	if wasted_sfx.playing:
+		await wasted_sfx.finished
+	else:
+		await get_tree().create_timer(2.0).timeout
+
 	# For now, just send the player back to the menu so the loop ends
 	# instead of dead-ending on a frozen screen.
-	await get_tree().create_timer(2.0).timeout
 	Transition.change_scene("res://Scenes/Menu.tscn")
 
 
