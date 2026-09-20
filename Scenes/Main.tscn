@@ -166,7 +166,7 @@ offset_bottom = 493.0
 [node name="TransBox" type="ColorRect" parent="Panel" unique_id=1787008851]
 layout_mode = 0
 offset_left = -21.0
-offset_right = 801.0
+offset_right = 821.0
 offset_bottom = 496.0
 color = Color(0.0497766, 0.049776666, 0.049776636, 0.6627451)
 
