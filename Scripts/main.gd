@@ -14,6 +14,10 @@ extends Node2D
 @onready var reset_button = $Reset
 @onready var nametag = $Nametag
 @onready var _hearts: Array[Sprite2D] = [$heart1, $heart2, $heart3]
+@onready var round_timer = $RoundTimer
+@onready var timer_label = $TimerLabel
+@onready var game_over_dim = $GameOverLayer/Dim
+@onready var wasted_image = $GameOverLayer/WastedImage
 
 # Keeps track of what the BetButton currently does
 var waiting_for_bet := false
@@ -22,6 +26,12 @@ var _target: String = ""
 var _lives: int = 3
 var _club_index: int = 0
 var _busy: bool = false
+
+## Seconds given per attempt. Runs out -> counts as a failed submit, same as
+## a wrong guess: lose a life via _lose_life(), then a fresh 15s if any are
+## left.
+const ROUND_SECONDS := 30
+var time_left: int = ROUND_SECONDS
 
 
 func _ready() -> void:
@@ -33,6 +43,8 @@ func _ready() -> void:
 	speech_bubble.hide()
 	submit_button.hide()
 	reset_button.hide()
+	timer_label.hide()
+	round_timer.timeout.connect(_on_round_timer_timeout)
 
 	start_round()
 
@@ -47,6 +59,9 @@ func start_round() -> void:
 	reset_button.disabled = false
 	_busy = false
 
+	round_timer.stop()
+	timer_label.hide()
+
 	# Button starts as HI!
 	bet_button.text = "HI!"
 	bet_button.show()
@@ -54,6 +69,17 @@ func start_round() -> void:
 	waiting_for_bet = false
 
 	_new_target()
+
+
+## Gives the player a fresh ROUND_SECONDS-second window. Called both when a
+## round's drawing first appears and again after a life is lost mid-round
+## (wrong guess or a timeout), so every attempt gets the same full window.
+func _start_timer() -> void:
+	time_left = ROUND_SECONDS
+	timer_label.text = str(time_left)
+	timer_label.show()
+	round_timer.paused = false
+	round_timer.start()
 
 
 ## Picks the word the bouncer demands. Mirrors paper_test.gd's _new_target():
@@ -103,6 +129,7 @@ func _on_bet_button_pressed() -> void:
 		paper.clear()
 		paper.show()
 		paper.start_bouncing()
+		_start_timer()
 
 
 ## THIS is where the classifier attaches. Ported from paper_test.gd's
@@ -120,6 +147,12 @@ func _on_submit_pressed() -> void:
 	reset_button.disabled = true
 	yap.text = "\"...hang on, let me look.\""
 
+	# Classifying can take a couple of seconds (DoodleAI runs several
+	# preprocessing variants). Pause rather than stop, so a slow model
+	# response can't both time out AND lose a life for the same attempt --
+	# the clock resumes with whatever time was left once we have an answer.
+	round_timer.paused = true
+
 	var img: Image = await paper.capture_image()
 	var guesses: Array = []
 
@@ -131,6 +164,7 @@ func _on_submit_pressed() -> void:
 		guesses = await DoodleAI.classify_among(img, DoodleAI.PROMPTS, 3)
 	else:
 		yap.text = "\"...the bouncer's brain isn't loaded yet, hang on.\""
+		round_timer.paused = false
 		_busy = false
 		submit_button.disabled = false
 		reset_button.disabled = false
@@ -147,6 +181,9 @@ func _on_submit_pressed() -> void:
 	if placed != -1:
 		yap.text = "\"...alright, that IS a %s. Get in.\"" % _target
 		paper.stop_bouncing()
+		round_timer.paused = false
+		round_timer.stop()
+		timer_label.hide()
 		submit_button.hide()
 		reset_button.hide()
 		await get_tree().create_timer(1.5).timeout
@@ -158,7 +195,7 @@ func _on_submit_pressed() -> void:
 		return
 
 	var guessed: String = guesses[0].label if not guesses.is_empty() else "nothing at all"
-	yap.text = "\"that's a %s?? Try again.\"" % guessed
+	yap.text = "\"that's a %s?? Try Again! Draw me a %s!\"" % [guessed, _target]
 	_lose_life()
 
 	_busy = false
@@ -174,20 +211,53 @@ func _lose_life() -> void:
 
 	if _lives <= 0:
 		_game_over()
+	else:
+		# Any lives left -> same round, fresh clock for the next attempt.
+		_start_timer()
+
+
+## The clock ran out on this attempt -- treated exactly like a wrong guess:
+## lose a life, and if any are left, _lose_life() already restarts the timer.
+func _on_round_timer_timeout() -> void:
+	time_left -= 1
+	timer_label.text = str(time_left)
+
+	if time_left <= 0:
+		round_timer.stop()
+		timer_label.text = "0"
+		yap.text = "\"times up! Try Again! Draw me a %s!\"" % _target
+		_lose_life()
 
 
 func _game_over() -> void:
 	paper.stop_bouncing()
+	round_timer.paused = false
+	round_timer.stop()
+	timer_label.hide()
 	submit_button.hide()
 	reset_button.hide()
 	yap.text = "\"get outta here, you're cut off.\""
 
-	# TODO: swap this for the real lose/blackout scene (Transition.cover()
-	# over a blur shader, plus the existing bounce code applied to a
-	# shrinking sprite) once it exists -- see CLAUDE.md Next priorities.
+	# Low-opacity black over the whole game, "WASTED" banner centered on top --
+	# faded/popped in rather than just appearing, same idea as the eventual
+	# real lose/blackout scene (blur shader + shrinking bounce sprite) this is
+	# standing in for. Swap this block out once that scene exists.
+	game_over_dim.modulate.a = 0.0
+	game_over_dim.show()
+	wasted_image.scale = Vector2(0.6, 0.6)
+	wasted_image.pivot_offset = wasted_image.size / 2.0
+	wasted_image.show()
+
+	var tween := create_tween()
+	tween.set_parallel(true)
+	tween.tween_property(game_over_dim, "modulate:a", 1.0, 0.4)
+	tween.tween_property(wasted_image, "scale", Vector2.ONE, 0.4)\
+		.set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
+	await tween.finished
+
 	# For now, just send the player back to the menu so the loop ends
 	# instead of dead-ending on a frozen screen.
-	await get_tree().create_timer(2.5).timeout
+	await get_tree().create_timer(2.0).timeout
 	Transition.change_scene("res://Scenes/Menu.tscn")
 
 

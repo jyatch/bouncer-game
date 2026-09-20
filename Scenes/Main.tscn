@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://bmtbstib5d5os" path="res://Images/text-bubble-pixilart.png" id="5_v1gob"]
 [ext_resource type="FontFile" uid="uid://blxtr3o4uc1kv" path="res://fonts/PixeloidSans-lxa3y.ttf" id="6_jw32o"]
 [ext_resource type="Texture2D" uid="uid://bhpjxysf2fg3t" path="res://Images/FreeHorrorUi.png" id="7_jw32o"]
+[ext_resource type="Texture2D" uid="uid://b4r8jj7fkh21s" path="res://Images/wasted (1).png" id="8_wasted"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_4kpch"]
 atlas = ExtResource("2_50glp")
@@ -203,12 +204,33 @@ theme_override_fonts/font = ExtResource("6_jw32o")
 text = "blah blah blah"
 autowrap_mode = 3
 
+[node name="heart4" type="Sprite2D" parent="." unique_id=804696452]
+position = Vector2(1106.172, 49.875)
+scale = Vector2(2.4408634, 2.7314816)
+texture = ExtResource("7_jw32o")
+region_enabled = true
+region_rect = Rect2(199, 105, 18, 15)
+
+[node name="heart5" type="Sprite2D" parent="." unique_id=2042500286]
+position = Vector2(1054.1721, 49.875)
+scale = Vector2(2.4408634, 2.7314816)
+texture = ExtResource("7_jw32o")
+region_enabled = true
+region_rect = Rect2(199, 105, 18, 15)
+
+[node name="heart6" type="Sprite2D" parent="." unique_id=952232497]
+position = Vector2(1003.1721, 49.875)
+scale = Vector2(2.4408634, 2.7314816)
+texture = ExtResource("7_jw32o")
+region_enabled = true
+region_rect = Rect2(199, 105, 18, 15)
+
 [node name="heart1" type="Sprite2D" parent="." unique_id=1843174411]
 position = Vector2(1106.172, 49.875)
 scale = Vector2(2.4408634, 2.7314816)
 texture = ExtResource("7_jw32o")
 region_enabled = true
-region_rect = Rect2(129.5, 97.75, 28.5, 27.5)
+region_rect = Rect2(135, 105, 18, 15)
 
 [node name="heart2" type="Sprite2D" parent="." unique_id=553536392]
 position = Vector2(1054.1721, 49.875)
@@ -255,6 +277,54 @@ theme_override_font_sizes/font_size = 24
 text = "Name: "
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="RoundTimer" type="Timer" parent="." unique_id=1466556263]
+
+[node name="TimerLabel" type="Label" parent="." unique_id=1990001122]
+offset_left = 11.0
+offset_top = 11.0
+offset_right = 142.0
+offset_bottom = 118.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 5
+theme_override_constants/shadow_offset_y = 4
+theme_override_constants/outline_size = -1
+theme_override_constants/shadow_outline_size = 7
+theme_override_fonts/font = ExtResource("6_jw32o")
+theme_override_font_sizes/font_size = 70
+text = "30"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="GameOverLayer" type="CanvasLayer" parent="."]
+
+[node name="Dim" type="ColorRect" parent="GameOverLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.65)
+visible = false
+
+[node name="WastedImage" type="TextureRect" parent="GameOverLayer"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -400.0
+offset_top = -100.0
+offset_right = 400.0
+offset_bottom = 100.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("8_wasted")
+expand_mode = 1
+stretch_mode = 5
+visible = false
 
 [connection signal="pressed" from="BetButton" to="." method="_on_bet_button_pressed"]
 [connection signal="pressed" from="Submit" to="." method="_on_submit_pressed"]
