@@ -31,7 +31,7 @@ var _busy: bool = false
 ## Seconds given per attempt. Runs out -> counts as a failed submit, same as
 ## a wrong guess: lose a life via _lose_life(), then a fresh 15s if any are
 ## left.
-const ROUND_SECONDS := 30
+const ROUND_SECONDS := 15
 var time_left: int = ROUND_SECONDS
 
 
