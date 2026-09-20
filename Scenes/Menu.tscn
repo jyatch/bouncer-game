@@ -6,11 +6,17 @@
 [ext_resource type="Script" uid="uid://c3wegts7omfmc" path="res://Scripts/texture_button.gd" id="5_ma218"]
 [ext_resource type="FontFile" uid="uid://blxtr3o4uc1kv" path="res://fonts/PixeloidSans-lxa3y.ttf" id="6_idohh"]
 [ext_resource type="Shader" path="res://Shaders/club_lights.gdshader" id="7_lights"]
+[ext_resource type="Script" path="res://Scripts/menu.gd" id="8_menu"]
+[ext_resource type="AudioStream" uid="uid://b4u66is8s53jn" path="res://Audio Files/last-time.mp3" id="9_last_time"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_lights"]
 shader = ExtResource("7_lights")
 
 [node name="Menu" type="Node2D" unique_id=1651934711]
+script = ExtResource("8_menu")
+
+[node name="LastTimeMusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("9_last_time")
 
 [node name="TextureRect" type="TextureRect" parent="." unique_id=599789557]
 offset_left = -25.0
