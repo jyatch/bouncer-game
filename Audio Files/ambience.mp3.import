@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://dgm7l4ajjdw1c"
+path="res://.godot/imported/ambience.mp3-2e891ecae402479f7a55efd619cf790a.mp3str"
+
+[deps]
+
+source_file="res://Audio Files/ambience.mp3"
+dest_files=["res://.godot/imported/ambience.mp3-2e891ecae402479f7a55efd619cf790a.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

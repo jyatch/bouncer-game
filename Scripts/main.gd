@@ -9,7 +9,8 @@ extends Node2D
 @onready var BG = $BG
 @onready var speech_bubble = $SpeechBubble
 @onready var yap = $SpeechBubble/Yap
-@onready var bet_button = $BetButton
+@onready var me_bubble = $MeBubble
+@onready var bet_button = $MeBubble/BetButton
 @onready var submit_button = $Submit
 @onready var reset_button = $Reset
 @onready var nametag = $Nametag
@@ -19,6 +20,8 @@ extends Node2D
 @onready var game_over_dim = $GameOverLayer/Dim
 @onready var wasted_image = $GameOverLayer/WastedImage
 @onready var wasted_sfx = $GameOverLayer/WastedSfx
+@onready var submit_label = $Submit/Label
+@onready var reset_label = $Reset/Label
 
 # Keeps track of what the BetButton currently does
 var waiting_for_bet := false
@@ -37,12 +40,17 @@ var current_level = 1
 
 
 func _ready() -> void:
+	submit_button.button_down.connect(_on_submit_button_down)
+	submit_button.button_up.connect(_on_submit_button_up)
+	reset_button.button_down.connect(_on_reset_button_down)
+	reset_button.button_up.connect(_on_reset_button_up)
 	nametag.text = "TONIGHT's Alcoholic: " + PlayerData.player_name
-	bouncer.play("Jake")
+	bouncer.play("Patrick")
 	BG.play()
 
 	paper.hide()
 	speech_bubble.hide()
+	me_bubble.hide()
 	submit_button.hide()
 	reset_button.hide()
 	timer_label.hide()
@@ -66,7 +74,7 @@ func start_round() -> void:
 
 	# Button starts as HI!
 	bet_button.text = "HI!"
-	bet_button.show()
+	me_bubble.show()
 
 	waiting_for_bet = false
 
@@ -125,13 +133,27 @@ func _on_bet_button_pressed() -> void:
 		waiting_for_bet = true
 	else:
 		# Player pressed BET!
-		bet_button.hide()
+		me_bubble.hide()
 		reset_button.show()
 		submit_button.show()
 		paper.clear()
 		paper.show()
 		paper.start_bouncing()
 		_start_timer()
+
+func _on_submit_button_down() -> void:
+	submit_label.position.y += 5
+
+
+func _on_submit_button_up() -> void:
+	submit_label.position.y -= 5
+
+func _on_reset_button_down() -> void:
+	reset_label.position.y += 5
+
+
+func _on_reset_button_up() -> void:
+	reset_label.position.y -= 5
 
 
 ## THIS is where the classifier attaches. Ported from paper_test.gd's
@@ -242,7 +264,12 @@ func _game_over() -> void:
 	timer_label.hide()
 	submit_button.hide()
 	reset_button.hide()
+	me_bubble.hide()
 	yap.text = "\"get outta here, you're cut off.\""
+
+	# Ambience has been looping since HowToPlay -- cut it out (quick fade, not
+	# an abrupt stop) right as the wasted screen takes over.
+	Music.fade_out(0.3)
 
 	# Low-opacity black over the whole game, "WASTED" banner centered on top --
 	# faded/popped in rather than just appearing, same idea as the eventual
@@ -274,7 +301,6 @@ func _game_over() -> void:
 	# For now, just send the player back to the menu so the loop ends
 	# instead of dead-ending on a frozen screen.
 	Transition.change_scene("res://Scenes/Menu.tscn")
-
 
 func _on_reset_pressed() -> void:
 	if _busy:

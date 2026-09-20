@@ -21,6 +21,7 @@ Transition="*res://Scripts/transition.gd"
 DoodleAI="*res://Scripts/doodle_ai.gd"
 QuickDraw="*res://Scripts/quickdraw.gd"
 PlayerData="*uid://bsovxllbeqi8y"
+Music="*res://Scripts/music.gd"
 
 [display]
 

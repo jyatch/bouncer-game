@@ -1,0 +1,74 @@
+[gd_scene format=3 uid="uid://7300blbyw7ol"]
+
+[ext_resource type="Texture2D" uid="uid://b0tkpm4eiypm4" path="res://Images/BG-sprite.png" id="1_tg2pa"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fr0ii"]
+atlas = ExtResource("1_tg2pa")
+region = Rect2(0, 0, 320, 160)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vcpgh"]
+atlas = ExtResource("1_tg2pa")
+region = Rect2(320, 0, 320, 160)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jotro"]
+atlas = ExtResource("1_tg2pa")
+region = Rect2(640, 0, 320, 160)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7ycrv"]
+atlas = ExtResource("1_tg2pa")
+region = Rect2(960, 0, 320, 160)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3cm46"]
+atlas = ExtResource("1_tg2pa")
+region = Rect2(1280, 0, 320, 160)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ls3ci"]
+atlas = ExtResource("1_tg2pa")
+region = Rect2(1600, 0, 320, 160)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pj0gy"]
+atlas = ExtResource("1_tg2pa")
+region = Rect2(1920, 0, 320, 160)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_21yg8"]
+atlas = ExtResource("1_tg2pa")
+region = Rect2(2240, 0, 320, 160)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_p1u0j"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fr0ii")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vcpgh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jotro")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7ycrv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3cm46")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ls3ci")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pj0gy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_21yg8")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="InDaClub" type="Node2D" unique_id=850964493]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1153961762]
+position = Vector2(1475, 251.49997)
+scale = Vector2(9.21875, 5.2562494)
+sprite_frames = SubResource("SpriteFrames_p1u0j")
