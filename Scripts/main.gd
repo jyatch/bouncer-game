@@ -45,11 +45,11 @@ var current_level = 1
 const IN_DA_CLUB_SCENE := preload("res://Scenes/InDaClub.tscn")
 const IN_DA_CLUB_SECONDS := 5.0
 
-## The screen gets a little blurrier with every bouncer after the first --
-## standing in for getting progressively more drunk. "amount" is roughly in
-## screen pixels; kept small since the ask is a slight blur, not a heavy one.
-const BLUR_PER_LEVEL := 2
-const BLUR_MAX := 6.0
+## The screen gets noticeably blurrier with every bouncer after the first --
+## standing in for getting progressively more drunk. "amount" is the tap
+## spacing in the blur shader, in screen pixels.
+const BLUR_PER_LEVEL := 3.5
+const BLUR_MAX := 14.0
 
 
 func _ready() -> void:
