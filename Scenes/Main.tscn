@@ -15,6 +15,11 @@
 [ext_resource type="Texture2D" uid="uid://deqa15xnqgj7q" path="res://Images/normButt.png" id="10_1p5hy"]
 [ext_resource type="Texture2D" uid="uid://dkcw0ew33ksqr" path="res://Images/pressedButton.png" id="11_h1m7h"]
 [ext_resource type="Texture2D" uid="uid://bpdrkiaty23u8" path="res://Images/you-text-pixilart.png" id="12_grg3l"]
+[ext_resource type="Shader" path="res://Shaders/screen_blur.gdshader" id="13_blur"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_blur"]
+shader = ExtResource("13_blur")
+shader_parameter/amount = 0.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_4kpch"]
 atlas = ExtResource("2_50glp")
@@ -373,6 +378,16 @@ theme_override_font_sizes/font_size = 70
 text = "15"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="DrunkBlur" type="ColorRect" parent="." unique_id=2871004416]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(1, 1, 1, 1)
+material = SubResource("ShaderMaterial_blur")
 
 [node name="GameOverLayer" type="CanvasLayer" parent="." unique_id=1998798683]
 

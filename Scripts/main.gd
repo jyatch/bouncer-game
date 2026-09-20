@@ -22,6 +22,7 @@ extends Node2D
 @onready var wasted_sfx = $GameOverLayer/WastedSfx
 @onready var submit_label = $Submit/Label
 @onready var reset_label = $Reset/Label
+@onready var drunk_blur = $DrunkBlur
 
 # Keeps track of what the BetButton currently does
 var waiting_for_bet := false
@@ -44,6 +45,12 @@ var current_level = 1
 const IN_DA_CLUB_SCENE := preload("res://Scenes/InDaClub.tscn")
 const IN_DA_CLUB_SECONDS := 5.0
 
+## The screen gets a little blurrier with every bouncer after the first --
+## standing in for getting progressively more drunk. "amount" is roughly in
+## screen pixels; kept small since the ask is a slight blur, not a heavy one.
+const BLUR_PER_LEVEL := 2
+const BLUR_MAX := 6.0
+
 
 func _ready() -> void:
 	submit_button.button_down.connect(_on_submit_button_down)
@@ -53,6 +60,7 @@ func _ready() -> void:
 	nametag.text = "TONIGHT's Alcoholic: " + PlayerData.player_name
 	bouncer.play("Jake")
 	BG.play()
+	_update_drunk_blur()
 
 	paper.hide()
 	speech_bubble.hide()
@@ -341,3 +349,13 @@ func _change_bouncer():
 			bouncer.play("Patrick")
 		_:
 			bouncer.play("Jake")
+
+	_update_drunk_blur()
+
+
+## Ramps the screen-blur shader's "amount" up with current_level -- 0 for
+## the first bouncer, a little more for each one after that, capped at
+## BLUR_MAX so it stays "slight" no matter how many clubs the player clears.
+func _update_drunk_blur() -> void:
+	var amount: float = clampf(float(current_level - 1) * BLUR_PER_LEVEL, 0.0, BLUR_MAX)
+	drunk_blur.material.set_shader_parameter("amount", amount)
