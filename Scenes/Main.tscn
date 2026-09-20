@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://ewsjptiyfmt2" path="res://Images/aakash-sprite.png" id="2_idj7w"]
 [ext_resource type="Texture2D" uid="uid://0tqkfijumvvw" path="res://Images/jake-sprite.png" id="4_rgh2o"]
 [ext_resource type="Texture2D" uid="uid://bmtbstib5d5os" path="res://Images/text-bubble-pixilart.png" id="5_v1gob"]
+[ext_resource type="Texture2D" uid="uid://bbh6jffcrg1b3" path="res://Images/patrick-sprite.png" id="6_4kpch"]
 [ext_resource type="FontFile" uid="uid://blxtr3o4uc1kv" path="res://fonts/PixeloidSans-lxa3y.ttf" id="6_jw32o"]
 [ext_resource type="Texture2D" uid="uid://bhpjxysf2fg3t" path="res://Images/FreeHorrorUi.png" id="7_jw32o"]
 [ext_resource type="Texture2D" uid="uid://b4r8jj7fkh21s" path="res://Images/wasted (1).png" id="8_wasted"]
@@ -107,6 +108,18 @@ region = Rect2(100, 0, 100, 100)
 atlas = ExtResource("4_rgh2o")
 region = Rect2(200, 0, 100, 100)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_0sclb"]
+atlas = ExtResource("6_4kpch")
+region = Rect2(0, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sxkr1"]
+atlas = ExtResource("6_4kpch")
+region = Rect2(100, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fq0cl"]
+atlas = ExtResource("6_4kpch")
+region = Rect2(200, 0, 100, 100)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_yd04n"]
 animations = [{
 "frames": [{
@@ -127,7 +140,7 @@ animations = [{
 }],
 "loop": 1,
 "name": &"Aakash",
-"speed": 5.0
+"speed": 3.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -141,7 +154,21 @@ animations = [{
 }],
 "loop": 1,
 "name": &"Jake",
-"speed": 5.0
+"speed": 3.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0sclb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sxkr1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fq0cl")
+}],
+"loop": 1,
+"name": &"Patrick",
+"speed": 3.0
 }]
 
 [node name="Main" type="Node2D" unique_id=1064176562]
@@ -182,8 +209,7 @@ bounce_box = NodePath("../TransBox")
 position = Vector2(173, 401.00003)
 scale = Vector2(4.3650002, 4.91)
 sprite_frames = SubResource("SpriteFrames_yd04n")
-animation = &"Jake"
-frame_progress = 0.5167927
+animation = &"Aakash"
 
 [node name="SpeechBubble" type="TextureRect" parent="." unique_id=603636473]
 modulate = Color(1, 1, 1, 0.8784314)

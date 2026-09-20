@@ -37,7 +37,7 @@ var time_left: int = ROUND_SECONDS
 
 func _ready() -> void:
 	nametag.text = "TONIGHT's Alcoholic: " + PlayerData.player_name
-	bouncer.play("Jake")
+	bouncer.play("Patrick")
 	BG.play()
 
 	paper.hide()
