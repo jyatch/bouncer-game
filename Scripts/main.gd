@@ -9,7 +9,8 @@ extends Node2D
 @onready var BG = $BG
 @onready var speech_bubble = $SpeechBubble
 @onready var yap = $SpeechBubble/Yap
-@onready var bet_button = $BetButton
+@onready var me_bubble = $MeBubble
+@onready var bet_button = $MeBubble/BetButton
 @onready var submit_button = $Submit
 @onready var reset_button = $Reset
 @onready var nametag = $Nametag
@@ -42,6 +43,7 @@ func _ready() -> void:
 
 	paper.hide()
 	speech_bubble.hide()
+	me_bubble.hide()
 	submit_button.hide()
 	reset_button.hide()
 	timer_label.hide()
@@ -65,7 +67,7 @@ func start_round() -> void:
 
 	# Button starts as HI!
 	bet_button.text = "HI!"
-	bet_button.show()
+	me_bubble.show()
 
 	waiting_for_bet = false
 
@@ -124,7 +126,7 @@ func _on_bet_button_pressed() -> void:
 		waiting_for_bet = true
 	else:
 		# Player pressed BET!
-		bet_button.hide()
+		me_bubble.hide()
 		reset_button.show()
 		submit_button.show()
 		paper.clear()
@@ -237,6 +239,7 @@ func _game_over() -> void:
 	timer_label.hide()
 	submit_button.hide()
 	reset_button.hide()
+	me_bubble.hide()
 	yap.text = "\"get outta here, you're cut off.\""
 
 	# Ambience has been looping since HowToPlay -- cut it out (quick fade, not
@@ -273,7 +276,6 @@ func _game_over() -> void:
 	# For now, just send the player back to the menu so the loop ends
 	# instead of dead-ending on a frozen screen.
 	Transition.change_scene("res://Scenes/Menu.tscn")
-
 
 func _on_reset_pressed() -> void:
 	if _busy:
