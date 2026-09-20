@@ -1,6 +1,8 @@
 [gd_scene format=3 uid="uid://7300blbyw7ol"]
 
+[ext_resource type="Script" uid="uid://c2jfys7qwwras" path="res://Scenes/in_da_club.gd" id="1_fr0ii"]
 [ext_resource type="Texture2D" uid="uid://b0tkpm4eiypm4" path="res://Images/BG-sprite.png" id="1_tg2pa"]
+[ext_resource type="Theme" uid="uid://c1oriq4f207wx" path="res://fonts/ui_theme.tres" id="3_vcpgh"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_fr0ii"]
 atlas = ExtResource("1_tg2pa")
@@ -67,8 +69,24 @@ animations = [{
 }]
 
 [node name="InDaClub" type="Node2D" unique_id=850964493]
+script = ExtResource("1_fr0ii")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1153961762]
-position = Vector2(1475, 251.49997)
-scale = Vector2(9.21875, 5.2562494)
+[node name="BG" type="AnimatedSprite2D" parent="." unique_id=1153961762]
+position = Vector2(1487, 234)
+scale = Vector2(9.3867855, 5.586205)
 sprite_frames = SubResource("SpriteFrames_p1u0j")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="." unique_id=1010238788]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 139.0
+offset_top = 252.0
+offset_right = 1076.0
+offset_bottom = 343.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("3_vcpgh")
+text = "2 Vodka Shots Deeper..."
