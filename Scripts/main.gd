@@ -45,7 +45,7 @@ func _ready() -> void:
 	reset_button.button_down.connect(_on_reset_button_down)
 	reset_button.button_up.connect(_on_reset_button_up)
 	nametag.text = "TONIGHT's Alcoholic: " + PlayerData.player_name
-	bouncer.play("Patrick")
+	bouncer.play("Jake")
 	BG.play()
 
 	paper.hide()
@@ -319,3 +319,5 @@ func _change_bouncer():
 			bouncer.play("Cindy")
 		4:
 			bouncer.play("Patrick")
+		_:
+			bouncer.play("Jake")

@@ -212,7 +212,7 @@ bounce_box = NodePath("../TransBox")
 position = Vector2(173, 401.00003)
 scale = Vector2(4.3650002, 4.91)
 sprite_frames = SubResource("SpriteFrames_yd04n")
-animation = &"Aakash"
+animation = &"Jake"
 
 [node name="SpeechBubble" type="TextureRect" parent="." unique_id=603636473]
 modulate = Color(1, 1, 1, 0.8784314)
