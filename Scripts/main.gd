@@ -36,6 +36,7 @@ var _busy: bool = false
 ## left.
 const ROUND_SECONDS := 15
 var time_left: int = ROUND_SECONDS
+var current_level = 1
 
 
 func _ready() -> void:
@@ -44,7 +45,7 @@ func _ready() -> void:
 	reset_button.button_down.connect(_on_reset_button_down)
 	reset_button.button_up.connect(_on_reset_button_up)
 	nametag.text = "TONIGHT's Alcoholic: " + PlayerData.player_name
-	bouncer.play("Patrick")
+	bouncer.play("Jake")
 	BG.play()
 
 	paper.hide()
@@ -214,6 +215,10 @@ func _on_submit_pressed() -> void:
 		_club_index += 1
 		paper.set_club(_club_index)
 		_reset_lives()
+		
+		current_level += 1
+		_change_bouncer()
+		
 		start_round()
 		return
 
@@ -303,3 +308,16 @@ func _on_reset_pressed() -> void:
 	paper.clear()
 	paper.start_bouncing()
 	_show_prompt_dialogue()
+
+func _change_bouncer():
+	match current_level:
+		1:
+			bouncer.play("Jake")
+		2:
+			bouncer.play("Aakash")
+		3:
+			bouncer.play("Cindy")
+		4:
+			bouncer.play("Patrick")
+		_:
+			bouncer.play("Jake")
