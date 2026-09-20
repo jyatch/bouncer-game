@@ -239,6 +239,10 @@ func _game_over() -> void:
 	reset_button.hide()
 	yap.text = "\"get outta here, you're cut off.\""
 
+	# Ambience has been looping since HowToPlay -- cut it out (quick fade, not
+	# an abrupt stop) right as the wasted screen takes over.
+	Music.fade_out(0.3)
+
 	# Low-opacity black over the whole game, "WASTED" banner centered on top --
 	# faded/popped in rather than just appearing, same idea as the eventual
 	# real lose/blackout scene (blur shader + shrinking bounce sprite) this is
