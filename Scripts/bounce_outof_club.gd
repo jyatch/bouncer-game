@@ -13,5 +13,4 @@ func _ready() -> void:
 func _on_endbounce_animation_finished() -> void:
 	await get_tree().create_timer(2.0).timeout
 	await get_tree().create_timer(3.0).timeout
-	Transition.change_scene("/Menu.tscn")
-res://Scenes
+	Transition.change_scene("res://Scenes/Menu.tscn")
