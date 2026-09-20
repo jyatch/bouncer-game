@@ -20,6 +20,8 @@ extends Node2D
 @onready var game_over_dim = $GameOverLayer/Dim
 @onready var wasted_image = $GameOverLayer/WastedImage
 @onready var wasted_sfx = $GameOverLayer/WastedSfx
+@onready var submit_label = $Submit/Label
+@onready var reset_label = $Reset/Label
 
 # Keeps track of what the BetButton currently does
 var waiting_for_bet := false
@@ -37,6 +39,10 @@ var time_left: int = ROUND_SECONDS
 
 
 func _ready() -> void:
+	submit_button.button_down.connect(_on_submit_button_down)
+	submit_button.button_up.connect(_on_submit_button_up)
+	reset_button.button_down.connect(_on_reset_button_down)
+	reset_button.button_up.connect(_on_reset_button_up)
 	nametag.text = "TONIGHT's Alcoholic: " + PlayerData.player_name
 	bouncer.play("Patrick")
 	BG.play()
@@ -133,6 +139,20 @@ func _on_bet_button_pressed() -> void:
 		paper.show()
 		paper.start_bouncing()
 		_start_timer()
+
+func _on_submit_button_down() -> void:
+	submit_label.position.y += 5
+
+
+func _on_submit_button_up() -> void:
+	submit_label.position.y -= 5
+
+func _on_reset_button_down() -> void:
+	reset_label.position.y += 5
+
+
+func _on_reset_button_up() -> void:
+	reset_label.position.y -= 5
 
 
 ## THIS is where the classifier attaches. Ported from paper_test.gd's

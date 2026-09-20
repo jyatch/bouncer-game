@@ -11,6 +11,8 @@
 [ext_resource type="Texture2D" uid="uid://bhpjxysf2fg3t" path="res://Images/FreeHorrorUi.png" id="7_jw32o"]
 [ext_resource type="Texture2D" uid="uid://b4r8jj7fkh21s" path="res://Images/wasted (1).png" id="8_wasted"]
 [ext_resource type="AudioStream" uid="uid://cti2uek5n5oby" path="res://Audio Files/wasted.mp3" id="9_wasted_sfx"]
+[ext_resource type="Texture2D" uid="uid://deqa15xnqgj7q" path="res://Images/normButt.png" id="10_1p5hy"]
+[ext_resource type="Texture2D" uid="uid://dkcw0ew33ksqr" path="res://Images/pressedButton.png" id="11_h1m7h"]
 [ext_resource type="Texture2D" uid="uid://bpdrkiaty23u8" path="res://Images/you-text-pixilart.png" id="12_grg3l"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_4kpch"]
@@ -274,19 +276,45 @@ texture = ExtResource("7_jw32o")
 region_enabled = true
 region_rect = Rect2(129.5, 97.75, 28.5, 27.5)
 
-[node name="Submit" type="Button" parent="." unique_id=1625071687]
-offset_left = 881.0
-offset_top = 582.0
-offset_right = 1006.0
-offset_bottom = 629.0
-text = "Submit"
+[node name="Submit" type="TextureButton" parent="." unique_id=529781686]
+offset_left = 766.0
+offset_top = 499.0
+offset_right = 1399.0
+offset_bottom = 1182.0
+texture_normal = ExtResource("10_1p5hy")
+texture_pressed = ExtResource("11_h1m7h")
+stretch_mode = 0
 
-[node name="Reset" type="Button" parent="." unique_id=336556380]
-offset_left = 1014.0
-offset_top = 582.0
-offset_right = 1143.0
-offset_bottom = 629.0
+[node name="Label" type="Label" parent="Submit" unique_id=79806802]
+layout_mode = 0
+offset_left = 85.0
+offset_top = 78.0
+offset_right = 182.0
+offset_bottom = 131.0
+theme_override_fonts/font = ExtResource("6_jw32o")
+text = "Submit"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Reset" type="TextureButton" parent="." unique_id=379756197]
+offset_left = 936.0
+offset_top = 498.0
+offset_right = 1569.0
+offset_bottom = 1181.0
+texture_normal = ExtResource("10_1p5hy")
+texture_pressed = ExtResource("11_h1m7h")
+stretch_mode = 0
+
+[node name="Label" type="Label" parent="Reset" unique_id=926897187]
+layout_mode = 0
+offset_left = 85.0
+offset_top = 78.0
+offset_right = 182.0
+offset_bottom = 131.0
+theme_override_fonts/font = ExtResource("6_jw32o")
 text = "Reset"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Nametag" type="Label" parent="." unique_id=826626955]
 offset_left = 283.0
