@@ -5,6 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://b0tkpm4eiypm4" path="res://Images/BG-sprite.png" id="2_50glp"]
 [ext_resource type="Texture2D" uid="uid://ewsjptiyfmt2" path="res://Images/aakash-sprite.png" id="2_idj7w"]
 [ext_resource type="Texture2D" uid="uid://0tqkfijumvvw" path="res://Images/jake-sprite.png" id="4_rgh2o"]
+[ext_resource type="Texture2D" uid="uid://cgqt0c5u5feyw" path="res://Images/Cindy-sprite.png" id="5_h1m7h"]
 [ext_resource type="Texture2D" uid="uid://bmtbstib5d5os" path="res://Images/text-bubble-pixilart.png" id="5_v1gob"]
 [ext_resource type="Texture2D" uid="uid://bbh6jffcrg1b3" path="res://Images/patrick-sprite.png" id="6_4kpch"]
 [ext_resource type="FontFile" uid="uid://blxtr3o4uc1kv" path="res://fonts/PixeloidSans-lxa3y.ttf" id="6_jw32o"]
@@ -99,6 +100,18 @@ region = Rect2(300, 0, 100, 100)
 atlas = ExtResource("2_idj7w")
 region = Rect2(400, 0, 100, 100)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_hwpts"]
+atlas = ExtResource("5_h1m7h")
+region = Rect2(0, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jyqft"]
+atlas = ExtResource("5_h1m7h")
+region = Rect2(100, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3tgeq"]
+atlas = ExtResource("5_h1m7h")
+region = Rect2(200, 0, 100, 100)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_50glp"]
 atlas = ExtResource("4_rgh2o")
 region = Rect2(0, 0, 100, 100)
@@ -143,6 +156,20 @@ animations = [{
 }],
 "loop": 1,
 "name": &"Aakash",
+"speed": 3.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hwpts")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jyqft")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3tgeq")
+}],
+"loop": 1,
+"name": &"Cindy",
 "speed": 3.0
 }, {
 "frames": [{
@@ -212,7 +239,7 @@ bounce_box = NodePath("../TransBox")
 position = Vector2(173, 401.00003)
 scale = Vector2(4.3650002, 4.91)
 sprite_frames = SubResource("SpriteFrames_yd04n")
-animation = &"Aakash"
+animation = &"Cindy"
 
 [node name="SpeechBubble" type="TextureRect" parent="." unique_id=603636473]
 modulate = Color(1, 1, 1, 0.8784314)
