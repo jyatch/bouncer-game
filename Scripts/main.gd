@@ -117,7 +117,7 @@ func _show_prompt_dialogue() -> void:
 		"Aakash":
 			yap.text = "You look madddd cooked boi. Draw me %s if you are not." % _target
 		"Cindy":
-			yap.text = "You look drunker than League teammates. Draw me %s dude." % _target
+			yap.text = "You look drunker than League teammates. Draw me a %s dude." % _target
 		"Patrick":
 			yap.text = "Senpai~ you look a little drunk... prove me wrong and draw %s! >w<" % _target
 		_:
